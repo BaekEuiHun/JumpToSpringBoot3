@@ -1,21 +1,25 @@
 package com.example.sbb.controller;
 
 import com.example.sbb.entity.Question;
-import com.example.sbb.repository.QuestionRepository;
+
 import com.example.sbb.service.QuestionService;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
-    private QuestionService questionService;
+
+    private final QuestionService questionService;
 
     @GetMapping("/")
     public String root() {
@@ -28,6 +32,10 @@ public class QuestionController {
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
         return "question_list";
+    }
+    @GetMapping(value = "/question/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id) {
+        return "question_detail";
     }
 
 }
