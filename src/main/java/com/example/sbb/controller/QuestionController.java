@@ -2,6 +2,7 @@ package com.example.sbb.controller;
 
 import com.example.sbb.entity.Question;
 import com.example.sbb.repository.QuestionRepository;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,10 @@ public class QuestionController {
     @Autowired
     QuestionRepository questionRepository;
 
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/question/list";
+    }
     //질문 목록 데이터 조회
     @GetMapping("/question/list")
     public String list(Model model) {
