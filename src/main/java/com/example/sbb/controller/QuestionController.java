@@ -34,6 +34,7 @@ public class QuestionController {
         return "question_list";
     }
 
+    //상세 페이지
     @GetMapping(value = "/question/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         Question question = this.questionService.getQuestion(id);
