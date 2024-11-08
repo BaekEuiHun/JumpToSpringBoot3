@@ -4,14 +4,14 @@ import com.example.sbb.entity.Question;
 
 import com.example.sbb.service.QuestionService;
 
-import lombok.Getter;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
 
 import java.util.List;
 
