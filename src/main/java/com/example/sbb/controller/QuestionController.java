@@ -2,13 +2,16 @@ package com.example.sbb.controller;
 
 import com.example.sbb.entity.Question;
 
+import com.example.sbb.form.QuestionForm;
 import com.example.sbb.service.QuestionService;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,14 +48,17 @@ public class QuestionController {
 
     //질문 등록하기 페이지 불러오기
     @GetMapping("/question/create")
-    public String questionCreate() {
+    public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
     //질문 등록하기
     @PostMapping("/question/create")
-    public String questionCreate(@RequestParam(value = "subject") String subject, @RequestParam(value = "content") String content) {
-        this.questionService.create(subject, content);
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
         return "redirect:/question/list";
     }
 
