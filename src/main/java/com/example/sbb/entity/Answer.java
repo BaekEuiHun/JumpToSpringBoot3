@@ -21,4 +21,6 @@ public class Answer {
     //질문과 답변을 연결해주는 어노테이션
     @ManyToOne
     private Question question;
+
+    private LocalDateTime modifyDate;
 }
