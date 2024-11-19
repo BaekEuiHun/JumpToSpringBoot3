@@ -26,6 +26,12 @@
                 </div>
             </div>
         </div>
+        <div class="my-3">
+            <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-smbtn-outline-secondary"
+               sec:authorize="isAuthenticated()"
+               th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+               th:text="수정"></a>
+        </div>
         <!-- 답변 반복 끝 -->
         <!-- 답변 작성 -->
         <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}"| method="post" class="my-3">
